@@ -3,6 +3,7 @@ package calculator;
 import calculator.handlers.ArgsToListHandler;
 import calculator.handlers.IArgsHandler;
 import calculator.rpn.RPNManager;
+import calculator.tools.ArgsHelper;
 import calculator.tools.CommonTool;
 
 import java.util.List;
@@ -24,14 +25,15 @@ public class Main {
      */
     public static void main(String[] args) {
         IArgsHandler handler = new ArgsToListHandler();
-        List<String> baseList = (List<String>) handler.handle(args);
+//        List<String> baseList = (List<String>) handler.handle(args);
+        List<String> baseList = (List<String>) handler.handle(ArgsHelper.getInputArgs());
 
         RPNManager manager = new RPNManager(baseList);
         List<String> postfixList = manager.getPostfixList();
         String result = manager.computeAndGetResult(postfixList);
 
         if(CommonTool.isValidNumber(result)) {
-            System.out.println(result);
+            System.out.println("Please check your result: " + result);
         }else {
             System.out.println("Input mathematical expression is invalid, please try again");
             System.out.println("Support operator: " + OPT_PLUS + OPT_MINUS + OPT_MULTIPLY + OPT_DIVIDE + OPT_OPEN_PAREN + OPT_CLOSE_PAREN);

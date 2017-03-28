@@ -2,6 +2,7 @@ package calculator.tools;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class ArgsHelper {
@@ -26,5 +27,11 @@ public class ArgsHelper {
         }
 
         return expList;
+    }
+
+    public static String[] getInputArgs() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please input your mathematical expression：");
+        return new String[]{sc.nextLine()};
     }
 }
