@@ -10,7 +10,7 @@ import static calculator.constant.OperatorConstant.*;
  */
 public class RPNManager {
 
-    public List<String> baseList;
+    private List<String> baseList;
     private static final Stack<String> RPN_OPT_STACK = new Stack<>();
     private static final Stack<String> COMPUTE_STACK = new Stack<>();
     private static final List<String> POST_FIX_LIST = new LinkedList<>();
@@ -22,21 +22,37 @@ public class RPNManager {
     public String computeAndGetResult(List<String> postfixList) {
         for(String element : postfixList) {
             switch (element) {
-                case OPT_PLUS :
-                    COMPUTE_STACK
-                            .push(RPNComputeTool.plus(COMPUTE_STACK.pop(), COMPUTE_STACK.pop()));
+                case OPT_PLUS:
+                    try {
+                        COMPUTE_STACK
+                                .push(RPNComputeTool.plus(COMPUTE_STACK.pop(), COMPUTE_STACK.pop()));
+                    } catch (Exception ex) {
+                        System.out.println("Not a valid mathematical expression, please check again");
+                    }
                     break;
-                case OPT_MINUS :
-                    COMPUTE_STACK
-                            .push(RPNComputeTool.minus(COMPUTE_STACK.pop(), COMPUTE_STACK.pop()));
+                case OPT_MINUS:
+                    try {
+                        COMPUTE_STACK
+                                .push(RPNComputeTool.minus(COMPUTE_STACK.pop(), COMPUTE_STACK.pop()));
+                    } catch (Exception ex) {
+                        System.out.println("Not a valid mathematical expression, please check again");
+                    }
                     break;
                 case OPT_MULTIPLY:
-                    COMPUTE_STACK
-                            .push(RPNComputeTool.multiply(COMPUTE_STACK.pop(), COMPUTE_STACK.pop()));
+                    try {
+                        COMPUTE_STACK
+                                .push(RPNComputeTool.multiply(COMPUTE_STACK.pop(), COMPUTE_STACK.pop()));
+                    } catch (Exception ex) {
+                        System.out.println("Not a valid mathematical expression, please check again");
+                    }
                     break;
-                case OPT_DIVIDE :
-                    COMPUTE_STACK
-                            .push(RPNComputeTool.divide(COMPUTE_STACK.pop(), COMPUTE_STACK.pop()));
+                case OPT_DIVIDE:
+                    try {
+                        COMPUTE_STACK
+                                .push(RPNComputeTool.divide(COMPUTE_STACK.pop(), COMPUTE_STACK.pop()));
+                    } catch (Exception ex) {
+                        System.out.println("Not a valid mathematical expression, please check again");
+                    }
                     break;
                 default:
                     COMPUTE_STACK.push(element);

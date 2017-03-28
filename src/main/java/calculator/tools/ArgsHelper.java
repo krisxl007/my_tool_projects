@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import static calculator.constant.OperatorConstant.*;
+import static calculator.constant.OperatorConstant.OPT_CLOSE_PAREN;
+import static calculator.constant.OperatorConstant.OPT_OPEN_PAREN;
+
 public class ArgsHelper {
 
     private static String initExpress(String exp){
@@ -31,6 +35,7 @@ public class ArgsHelper {
 
     public static String[] getInputArgs() {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Support operators so far: " + OPT_PLUS + OPT_MINUS + OPT_MULTIPLY + OPT_DIVIDE + OPT_OPEN_PAREN + OPT_CLOSE_PAREN);
         System.out.println("Please input your mathematical expression：");
         return new String[]{sc.nextLine()};
     }

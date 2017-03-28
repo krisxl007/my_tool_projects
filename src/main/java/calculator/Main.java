@@ -36,7 +36,7 @@ public class Main {
             System.out.println("Please check your result: " + result);
         }else {
             System.out.println("Input mathematical expression is invalid, please try again");
-            System.out.println("Support operator: " + OPT_PLUS + OPT_MINUS + OPT_MULTIPLY + OPT_DIVIDE + OPT_OPEN_PAREN + OPT_CLOSE_PAREN);
+            System.out.println("Support operators: " + OPT_PLUS + OPT_MINUS + OPT_MULTIPLY + OPT_DIVIDE + OPT_OPEN_PAREN + OPT_CLOSE_PAREN);
         }
     }
 
