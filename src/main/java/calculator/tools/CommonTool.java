@@ -6,8 +6,10 @@ public class CommonTool {
 
     public static boolean isValidNumber(String number) {
         if(null == number) {
+            System.out.println("Given number is null, please check again!");
             throw new RuntimeException("Given number is null, please check again!");
         }else if(!isNumeric(number)) {
+            System.out.println("Given number is not a valid number, please check again!");
             throw new RuntimeException("Given number is not a valid number, please check again!");
         }else {
             return true;

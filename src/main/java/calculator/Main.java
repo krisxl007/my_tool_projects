@@ -3,8 +3,11 @@ package calculator;
 import calculator.handlers.ArgsToListHandler;
 import calculator.handlers.IArgsHandler;
 import calculator.rpn.RPNManager;
+import calculator.tools.CommonTool;
 
 import java.util.List;
+
+import static calculator.constant.OperatorConstant.*;
 
 /**
  * Created by Kris Li on 3/27/2017.
@@ -27,7 +30,12 @@ public class Main {
         List<String> postfixList = manager.getPostfixList();
         String result = manager.computeAndGetResult(postfixList);
 
-        System.out.println(result);
+        if(CommonTool.isValidNumber(result)) {
+            System.out.println(result);
+        }else {
+            System.out.println("Input mathematical expression is invalid, please try again");
+            System.out.println("Support operator: " + OPT_PLUS + OPT_MINUS + OPT_MULTIPLY + OPT_DIVIDE + OPT_OPEN_PAREN + OPT_CLOSE_PAREN);
+        }
     }
 
 
