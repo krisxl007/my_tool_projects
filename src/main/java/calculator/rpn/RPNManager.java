@@ -1,10 +1,7 @@
 package calculator.rpn;
 
 import calculator.tools.RPNComputeTool;
-
-import java.math.BigDecimal;
 import java.util.*;
-
 import static calculator.constant.OperatorConstant.*;
 
 /**
