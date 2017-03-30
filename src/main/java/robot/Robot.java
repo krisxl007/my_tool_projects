@@ -4,14 +4,17 @@ import robot.constant.Direction;
 
 public class Robot {
 
-    private static final Robot robot = new Robot();
+    private static Robot robot;
     private Integer coordinateX;
     private Integer coordinateY;
     private Direction facing;
 
     private Robot() {}
 
-    public static Robot getInstance() {
+    public static synchronized Robot getInstance() {
+        if(null == robot) {
+            robot = new Robot();
+        }
         return robot;
     }
 
@@ -28,7 +31,7 @@ public class Robot {
         return coordinateX;
     }
 
-    public void setCoordinateX(int coordinateX) {
+    public void setCoordinateX(Integer coordinateX) {
         this.coordinateX = coordinateX;
     }
 
@@ -36,7 +39,7 @@ public class Robot {
         return coordinateY;
     }
 
-    public void setCoordinateY(int coordinateY) {
+    public void setCoordinateY(Integer coordinateY) {
         this.coordinateY = coordinateY;
     }
 

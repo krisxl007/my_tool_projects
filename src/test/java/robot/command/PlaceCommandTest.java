@@ -1,6 +1,7 @@
 package robot.command;
 
 import org.assertj.core.api.Assertions;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,6 +15,9 @@ public class PlaceCommandTest {
     @Before
     public void setUp() throws Exception {
         robot = Robot.getInstance();
+        robot.setCoordinateY(null);
+        robot.setCoordinateX(null);
+        robot.setFacing(null);
     }
 
     @Rule
@@ -30,11 +34,12 @@ public class PlaceCommandTest {
 
     @Test
     public void givenValidArgsButOverEdgeShouldWarnAndNotPlace() throws Exception {
+        String currentLocation = robot.getCurrentLocation();
         PlaceCommand command = new PlaceCommand(robot, "PLACE,-1,-1,NORTH");
         command.execute();
-        String currentLocation = robot.getCurrentLocation();
+        String newLocation = robot.getCurrentLocation();
 
-        Assertions.assertThat(currentLocation).containsOnlyOnce("(null,null),null");
+        Assertions.assertThat(newLocation).containsOnlyOnce(currentLocation);
     }
 
     @Test
@@ -51,5 +56,10 @@ public class PlaceCommandTest {
 
         PlaceCommand command = new PlaceCommand(robot, "PLACE,a,b,NORTH");
         command.execute();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        robot = null;
     }
 }

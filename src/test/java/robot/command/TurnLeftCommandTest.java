@@ -1,6 +1,7 @@
 package robot.command;
 
 import org.assertj.core.api.Assertions;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import robot.Robot;
@@ -40,4 +41,8 @@ public class TurnLeftCommandTest {
         Assertions.assertThat(expectFacingNorth).containsOnlyOnce(Direction.NORTH.name());
     }
 
+    @After
+    public void tearDown() throws Exception {
+        robot = null;
+    }
 }

@@ -33,7 +33,6 @@ public class ArgsHelper {
         }catch (Exception ex) {
             System.out.println("Given PLACE command " + placeCommand + " is not in a correct format, " +
                     "please following format as: PLACE,2,3,NORTH");
-            throw new RuntimeException();
         }
     }
 
