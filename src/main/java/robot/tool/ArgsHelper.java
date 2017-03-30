@@ -3,8 +3,10 @@ package robot.tool;
 import robot.constant.Action;
 import robot.constant.Direction;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ArgsHelper {
 
@@ -43,5 +45,29 @@ public class ArgsHelper {
         }
 
         return commandList;
+    }
+
+    public static String[] getInputArgs() {
+        List<String> args = new ArrayList();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=========================================================== ");
+        System.out.println("Please input your commands as below example, end with exit: ");
+        System.out.println("=========================================================== ");
+        System.out.println("PLACE,1,2,EAST\n" +
+                "MOVE\n" +
+                "MOVE\n" +
+                "LEFT\n" +
+                "MOVE\n" +
+                "REPORT\n" +
+                "EXIT");
+        System.out.println("=========================================================== ");
+
+        String line;
+        while (!"exit".equalsIgnoreCase(line = sc.nextLine())) {
+            args.add(line);
+        }
+        sc.close();
+
+        return args.toArray(new String[args.size()]);
     }
 }

@@ -4,6 +4,7 @@ import robot.command.ICommand;
 import robot.command.MarcoCommand;
 import robot.handlers.ArgsToListHandler;
 import robot.handlers.IArgsHandler;
+import robot.tool.ArgsHelper;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        IArgsHandler handler = new ArgsToListHandler(args);
+        IArgsHandler handler = new ArgsToListHandler(ArgsHelper.getInputArgs());
         List<String> commandList = (List<String>)handler.handle();
 
         ICommand command = new MarcoCommand(commandList);
