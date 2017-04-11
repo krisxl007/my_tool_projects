@@ -7,7 +7,7 @@ public class TurnRightCommand implements ICommand {
 
     private Robot robot;
 
-    public TurnRightCommand(Robot robot) {
+    TurnRightCommand(Robot robot) {
         this.robot = robot;
     }
 

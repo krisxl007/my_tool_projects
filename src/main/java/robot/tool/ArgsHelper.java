@@ -50,20 +50,9 @@ public class ArgsHelper {
     public static String[] getInputArgs() {
         List<String> args = new ArrayList();
         Scanner sc = new Scanner(System.in);
-        System.out.println("=========================================================== ");
-        System.out.println("Please input your commands as below example, end with exit: ");
-        System.out.println("=========================================================== ");
-        System.out.println("PLACE,1,2,EAST\n" +
-                "MOVE\n" +
-                "MOVE\n" +
-                "LEFT\n" +
-                "MOVE\n" +
-                "REPORT\n" +
-                "EXIT");
-        System.out.println("=========================================================== ");
 
         String line;
-        while (!"exit".equalsIgnoreCase(line = sc.nextLine())) {
+        while (!Action.EXIT.equalsIgnoreCase(line = sc.nextLine())) {
             args.add(line);
         }
         sc.close();

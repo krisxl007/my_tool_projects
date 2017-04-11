@@ -6,7 +6,7 @@ public class ReportCommand implements ICommand {
 
     private Robot robot;
 
-    public ReportCommand(Robot robot) {
+    ReportCommand(Robot robot) {
         this.robot = robot;
     }
 

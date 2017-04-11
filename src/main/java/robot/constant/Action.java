@@ -7,4 +7,5 @@ public class Action {
     public static final String LEFT = "LEFT";
     public static final String RIGHT = "RIGHT";
     public static final String REPORT = "REPORT";
+    public static final String EXIT = "EXIT";
 }

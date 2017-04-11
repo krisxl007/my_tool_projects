@@ -8,7 +8,7 @@ public class MoveCommand implements ICommand {
 
     private Robot robot;
 
-    public MoveCommand(Robot robot) {
+    MoveCommand(Robot robot) {
         this.robot = robot;
     }
 

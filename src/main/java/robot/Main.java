@@ -16,6 +16,18 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
+        System.out.println("=========================================================== ");
+        System.out.println("Please input your commands as below example, end with exit: ");
+        System.out.println("=========================================================== ");
+        System.out.println("PLACE,1,2,EAST\n" +
+                "MOVE\n" +
+                "MOVE\n" +
+                "LEFT\n" +
+                "MOVE\n" +
+                "REPORT\n" +
+                "EXIT");
+        System.out.println("=========================================================== ");
+
         IArgsHandler handler = new ArgsToListHandler(ArgsHelper.getInputArgs());
         List<String> commandList = (List<String>)handler.handle();
 

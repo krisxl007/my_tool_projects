@@ -10,7 +10,7 @@ public class PlaceCommand implements ICommand {
     private Robot robot;
     private String command;
 
-    public PlaceCommand(Robot robot, String command) {
+    PlaceCommand(Robot robot, String command) {
         this.robot = robot;
         this.command = command;
     }
@@ -38,12 +38,8 @@ public class PlaceCommand implements ICommand {
     }
 
     private boolean isOverEdge(int coordinateX, int coordinateY) {
-        if(coordinateX >= 0 && coordinateX <= getCheckingSize()
-                && coordinateY >= 0 && coordinateY <= getCheckingSize()) {
-            return false;
-        }else {
-            return true;
-        }
+        return !(coordinateX >= 0 && coordinateX <= getCheckingSize()
+                && coordinateY >= 0 && coordinateY <= getCheckingSize());
     }
 
     private int getCheckingSize() {
