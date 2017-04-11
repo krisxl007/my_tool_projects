@@ -48,7 +48,7 @@ public class ArgsHelper {
     }
 
     public static String[] getInputArgs() {
-        List<String> args = new ArrayList();
+        List<String> args = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
 
         String line;
