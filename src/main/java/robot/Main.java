@@ -11,8 +11,15 @@ import java.util.List;
 /**
  * This is the main class for robot moving game
  * Command example:
-     PLACE,1,2,EAST MOVE MOVE LEFT MOVE REPORT
-     Output: 3,3,NORTH
+     PLACE,1,2,EAST
+     MOVE
+     MOVE
+     LEFT
+     MOVE
+     REPORT
+     EXIT
+
+   Output: 3,3,NORTH
  */
 public class Main {
     public static void main(String[] args) {

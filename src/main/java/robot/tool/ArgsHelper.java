@@ -1,5 +1,6 @@
 package robot.tool;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import robot.constant.Action;
 import robot.constant.Direction;
 
@@ -18,24 +19,25 @@ public class ArgsHelper {
         }else {
             for(String arg : args) {
                 if(arg.toUpperCase().startsWith(Action.PLACE)) {
-                    checkPlaceCommand(arg);
+                    isValidPlaceCommand(arg);
                 }
             }
             return true;
         }
     }
 
-    private static void checkPlaceCommand(String placeCommand) {
+    private static boolean isValidPlaceCommand(String placeCommand) {
         String[] data = placeCommand.split(",");
+        String coordinateX = data[1];
+        String coordinateY = data[2];
+        String facing = data[3];
 
-        try {
-            Integer.valueOf(data[1]);
-            Integer.valueOf(data[2]);
-            Direction.valueOf(data[3]);
-        }catch (Exception ex) {
+        if(isNumeric(coordinateX) && isNumeric(coordinateY) && isValidDirection(facing))
+            return true;
+        else
             System.out.println("Given PLACE command " + placeCommand + " is not in a correct format, " +
                     "please following format as: PLACE,2,3,NORTH");
-        }
+        return false;
     }
 
     public static List<String> buildCommandList(String[] args) {
@@ -58,5 +60,14 @@ public class ArgsHelper {
         sc.close();
 
         return args.toArray(new String[args.size()]);
+    }
+
+    private static boolean isNumeric(String str){
+        //TODO: find out better solution for checking a number
+        return NumberUtils.isNumber(str);
+    }
+
+    private static boolean isValidDirection(String str){
+        return Direction.allDirections().contains(str);
     }
 }
