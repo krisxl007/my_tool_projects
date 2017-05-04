@@ -4,30 +4,26 @@ import org.apache.commons.lang3.math.NumberUtils;
 import rpnmodecalculator.constant.OperatorConstant;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Stack;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CommonTool {
 
     public static Stack<String> pushAllToStack(String str) {
-        Stack<String> stack = new Stack<>();
-        for(String each : str.split(" ")){
-            stack.push(each);
-        }
-        return stack;
+        return Stream.of(str.split(" "))
+                .collect(Collectors.toCollection(Stack::new));
     }
 
     public static boolean isValidInput(String input) {
-        if(OperatorConstant.allOperators.contains(input)) {
-            return true;
-        }else if(isNumeric(input)){
-            return true;
-        }
-        return false;
+        return Optional.ofNullable(input)
+                .map((n) -> isNumeric(n) || OperatorConstant.allOperators.contains(n))
+                .orElse(false);
     }
 
     public static boolean isNumeric(String str){
-        //TODO: find out better solution for checking a number
-        return NumberUtils.isNumber(str);
+        return NumberUtils.isCreatable(str);
     }
 
 
