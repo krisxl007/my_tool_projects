@@ -36,6 +36,7 @@ public class CommonTool {
                 .forEach((input) -> {
                     map.put(String.valueOf(temp[0].indexOf(input) + 1), input);
                     Optional.of(OperatorConstant.allOperators.contains(input))
+                            .filter(isTrue -> isTrue)
                             .ifPresent((t) -> temp[0] = temp[0].replaceFirst("[" + input + "]", " "));
 
                 });
