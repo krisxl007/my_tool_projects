@@ -2,10 +2,8 @@ package rpnmodecalculator.rpn;
 
 import rpnmodecalculator.tools.CommonTool;
 import rpnmodecalculator.tools.RPNComputeTool;
-import java.util.EmptyStackException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+
+import java.util.*;
 
 import static rpnmodecalculator.constant.OperatorConstant.*;
 
@@ -23,7 +21,7 @@ public class RPNManager {
         for(Map.Entry entry : parameters.entrySet()) {
             String element = (String) entry.getValue();
             try {
-                if(CommonTool.isValidInput(element)) {
+                Optional.of(CommonTool.isValidInput(element)).filter(isTrue -> isTrue).ifPresent(t -> {
                     switch (element) {
                         case OPT_PLUS:
                             STACK.push(RPNComputeTool.plus(UNDO_STACK.push(STACK.pop()), UNDO_STACK.push(STACK.pop())));
@@ -45,18 +43,18 @@ public class RPNManager {
                             break;
                         case OPT_UNDO:
                             STACK.pop();
-                            if (!UNDO_STACK.isEmpty()) {
-                                STACK.push(UNDO_STACK.pop());
-                            }
-                            if (!UNDO_STACK.isEmpty()) {
-                                STACK.push(UNDO_STACK.pop());
-                            }
+                            Optional.of(!UNDO_STACK.isEmpty())
+                                    .filter(isTrue -> isTrue)
+                                    .ifPresent(n -> STACK.push(UNDO_STACK.pop()));
+                            Optional.of(!UNDO_STACK.isEmpty())
+                                    .filter(isTrue -> isTrue)
+                                    .ifPresent(n -> STACK.push(UNDO_STACK.pop()));
                             break;
                         default:
                             STACK.push(element);
                             break;
                     }
-                }
+                });
             }catch (EmptyStackException ese) {
                 System.out.println("operator <" + element + "> (position: <" +
                         ((Integer.valueOf((String)entry.getKey())) + 1) + ">): insufficient parameters");

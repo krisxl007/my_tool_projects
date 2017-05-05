@@ -5,6 +5,15 @@ import org.junit.Test;
 
 public class RPNManagerTest {
 
+    @Test
+    public void compute_invalid_input_case() throws Exception {
+        String input = "5 a";
+        RPNManager manager = new RPNManager();
+        manager.compute(input);
+
+        Assertions.assertThat(manager.getStack()).containsOnly("5");
+    }
+
     /**
      * Example 1
         5 2

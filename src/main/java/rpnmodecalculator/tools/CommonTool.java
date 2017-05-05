@@ -28,17 +28,17 @@ public class CommonTool {
 
 
     public static Map<String, String> generateMap(String inputParameter) {
-        Map<String, String> map = new LinkedHashMap<>();
-        String temp = inputParameter;
-        String[] parameters = inputParameter.split(" ");
-        for(String parameter : parameters) {
-            if(!"".equals(parameter)) {
-                map.put(String.valueOf(temp.indexOf(parameter) + 1), parameter);
-                if (OperatorConstant.allOperators.contains(parameter)) {
-                    temp = temp.replaceFirst("[" + parameter + "]", " ");
-                }
-            }
-        }
+        final Map<String, String> map = new LinkedHashMap<>();
+        final String[] temp = {inputParameter};
+
+        Stream.of(inputParameter.split(" "))
+                .filter(input -> !"".equals(input))
+                .forEach((input) -> {
+                    map.put(String.valueOf(temp[0].indexOf(input) + 1), input);
+                    Optional.of(OperatorConstant.allOperators.contains(input))
+                            .ifPresent((t) -> temp[0] = temp[0].replaceFirst("[" + input + "]", " "));
+
+                });
         return map;
     }
 }
